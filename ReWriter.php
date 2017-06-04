@@ -42,7 +42,7 @@ class ReWriter{
 	public function ScanFolder($path){sleep(1);
 		$files = scandir($path);
 		echo "Scanning ".$path."\n";
-		foreach($files as $file){var_dump($files);
+		foreach($files as $file){//var_dump($files);
 			if($this->isScanFile($file)){
 				if(is_dir($file)){
 					$this->ScanFolder($path.$file."/");
@@ -55,7 +55,13 @@ class ReWriter{
 
 	public function ReWrite($file){sleep(1);
 		chmod($file,0777);
-		$data = file_get_contents($file);
+		//$data = file_get_contents($file);
+		$file_array = file($file);
+		$data = "a";
+		foreach($file_array as $line){
+			$data = $data.$line;
+		}
+
 		$before = 'pocketmine\network\protocol';
 		$after  = 'pocketmine\network\mcpe\protocol';
 		echo "Scanning ".$file."\n";
