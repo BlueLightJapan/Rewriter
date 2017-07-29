@@ -39,11 +39,13 @@ class ReWriter{
 		return true;
 	}
 
-	public function ScanFolder($path){sleep(1);
+	public function ScanFolder($path){
+		sleep(1);
 		$files = scandir($path);
 		echo "Scanning ".$path."\n";
-		foreach($files as $file){//var_dump($files);
-			if($this->isScanFile($file)){
+		foreach($files as $file){
+			//var_dump($files);
+			if($this->isScanFile($path.$file."/")){
 				if(is_dir($file)){
 					$this->ScanFolder($path.$file."/");
 				}else{
@@ -53,7 +55,8 @@ class ReWriter{
 		}
 	}
 
-	public function ReWrite($file){sleep(1);
+	public function ReWrite($file){
+		sleep(1);
 		chmod($file,0777);
 		//$data = file_get_contents($file);
 		$file_array = file($file);
