@@ -47,7 +47,7 @@ class ReWriter{
 			//var_dump($files);
 			if($this->isScanFile($path.$file."/")){
 				if(is_dir($file)){
-					$this->ScanFolder($path.$file."/");
+					$this->ScanFolder($file);
 				}else{
 					$this->ReWrite($path.$file);
 				}
